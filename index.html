@@ -2,248 +2,142 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Para Ti, Siempre ❤️</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Mi Niña 💖</title>
 
 <style>
-* { box-sizing: border-box; }
+    body {
+        margin: 0;
+        height: 100vh;
+        background: radial-gradient(circle, #1a1a1a, #000);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Georgia', serif;
+        color: white;
+        overflow: hidden;
+    }
 
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #1f1c2c, #928dab);
-  min-height: 100vh;
-  color: white;
-  overflow-x: hidden;
-}
+    .container {
+        text-align: center;
+    }
 
-/* Intro */
-.intro {
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(135deg, #000000, #434343);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-}
+    button {
+        padding: 15px 35px;
+        font-size: 1.1rem;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        background: linear-gradient(135deg, #ff5f9e, #ff2f6d);
+        color: white;
+        box-shadow: 0 0 20px rgba(255,95,158,.6);
+        transition: all .3s ease;
+    }
 
-.intro button {
-  background: #ff4e8d;
-  border: none;
-  padding: 20px 35px;
-  border-radius: 45px;
-  color: white;
-  font-size: 1.3em;
-  cursor: pointer;
-  box-shadow: 0 12px 30px rgba(0,0,0,.5);
-}
+    button:hover {
+        transform: scale(1.05);
+    }
 
-/* Contenido */
-.container {
-  display: none;
-  padding: 50px 20px;
-}
+    button:disabled {
+        opacity: .7;
+        cursor: default;
+    }
 
-.card {
-  max-width: 800px;
-  margin: auto;
-  background: rgba(0,0,0,.35);
-  border-radius: 25px;
-  padding: 40px;
-  animation: fadeIn 2s ease;
-  box-shadow: 0 30px 60px rgba(0,0,0,.5);
-}
+    .photo {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 2s ease;
+    }
 
-h1 {
-  text-align: center;
-  font-size: 2.6em;
-}
+    .photo.show {
+        opacity: 1;
+        pointer-events: auto;
+    }
 
-.subtitle {
-  text-align: center;
-  opacity: .85;
-  margin-bottom: 25px;
-}
+    .photo img {
+        max-width: 80%;
+        max-height: 80%;
+        border-radius: 20px;
+        animation: pulse 2s infinite;
+        box-shadow: 0 0 40px rgba(255,105,180,.7);
+    }
 
-p {
-  font-size: 1.15em;
-  line-height: 1.7;
-  margin: 20px 0;
-}
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
 
-/* Foto */
-.photo {
-  width: 100%;
-  max-height: 380px;
-  object-fit: cover;
-  border-radius: 20px;
-  margin: 25px 0;
-  box-shadow: 0 15px 35px rgba(0,0,0,.5);
-  opacity: 0;
-  transform: scale(0.98);
-  transition: opacity 2s ease, transform 2s ease;
-}
+    .name {
+        margin-top: 25px;
+        font-size: 2.2rem;
+        font-weight: bold;
+        font-style: italic;
+        min-height: 45px;
+    }
 
-.photo.show {
-  opacity: 1;
-  transform: scale(1);
-}
+    .message {
+        margin-top: 15px;
+        font-size: 1.2rem;
+        opacity: 0;
+        transition: opacity 2s ease;
+    }
 
-
-/* Botón música */
-.music-btn {
-  margin: 35px auto 10px;
-  display: block;
-  background: #ff4e8d;
-  border: none;
-  padding: 16px 30px;
-  border-radius: 35px;
-  color: white;
-  font-size: 1.1em;
-  cursor: pointer;
-  box-shadow: 0 10px 25px rgba(0,0,0,.4);
-  animation: pulse 2s infinite;
-}
-
-.music-btn:disabled {
-  opacity: .75;
-  animation: none;
-}
-
-/* Audio integrado (clave para que funcione) */
-audio {
-  width: 100%;
-  margin-top: 10px;
-  border-radius: 12px;
-  filter: invert(1);
-  opacity: 0.85;
-}
-
-@keyframes pulse {
-  0% {transform: scale(1);}
-  50% {transform: scale(1.05);}
-  100% {transform: scale(1);}
-}
-
-/* Promesa */
-.promise {
-  margin-top: 40px;
-  padding: 25px;
-  border-left: 4px solid #ff4e8d;
-  background: rgba(255,78,141,.1);
-  border-radius: 12px;
-}
-
-/* Firma */
-.signature {
-  margin-top: 50px;
-  text-align: right;
-  font-style: italic;
-  opacity: .9;
-}
-
-/* Corazones */
-.heart {
-  position: fixed;
-  bottom: -20px;
-  color: #ff4e8d;
-  animation: floatUp 8s linear infinite;
-  font-size: 20px;
-  opacity: .6;
-}
-
-@keyframes floatUp {
-  from {transform: translateY(0);}
-  to {transform: translateY(-120vh); opacity:0;}
-}
-
-@keyframes fadeIn {
-  from {opacity:0; transform: translateY(30px);}
-  to {opacity:1; transform: translateY(0);}
-}
+    .message.show {
+        opacity: 1;
+    }
 </style>
 </head>
 
 <body>
 
-<!-- Intro -->
-<div class="intro">
-  <button onclick="openLetter()">Ábreme ❤️</button>
+<div class="container">
+    <button id="playBtn">Presiona y escucha mi corazón</button>
+    <div class="name" id="name"></div>
+    <div class="message" id="message">Esto late por ti 💖</div>
 </div>
 
-<!-- Carta -->
-<div class="container" id="content">
-  <div class="card">
-
-    <h1>No quiero perderte</h1>
-    <div class="subtitle">Aunque la distancia exista, yo sigo aquí</div>
-
-    <img src="nosotros.jpg" class="photo">
-
-    <p>
-      No sé cómo decir esto sin que me tiemble el corazón,
-      pero necesito que lo sepas: <b>no quiero un futuro donde tú no estés</b>.
-    </p>
-
-    <p>
-      La distancia duele, pesa y a veces asusta,
-      pero nunca ha sido más fuerte que lo que siento por ti.
-    </p>
-
-    <!-- AUDIO (VISIBLE, PERO ELEGANTE) -->
-    <audio id="audio" controls loop preload="auto">
-      <source src="corazon.mp3" type="audio/mpeg">
-    </audio>
-
-    <div class="promise">
-      <p>No te prometo que todo será fácil,</p>
-      <p>pero sí te prometo intentarlo todos los días.</p>
-      <p><b>No me voy a rendir contigo.</b></p>
-    </div>
-
-    <div class="signature">
-      Con todo mi corazón,<br>
-      Henri ❤️
-    </div>
-
-  </div>
+<div class="photo" id="photo">
+    <img src="nosotros.jpg" alt="Nosotros">
 </div>
+
+<audio id="audio" src="musica.mp3"></audio>
 
 <script>
-function openLetter() {
-  document.querySelector('.intro').style.display = 'none';
-  document.getElementById('content').style.display = 'block';
-  createHearts();
-}
+    const btn = document.getElementById("playBtn");
+    const audio = document.getElementById("audio");
+    const photo = document.getElementById("photo");
+    const nameEl = document.getElementById("name");
+    const message = document.getElementById("message");
 
+    const text = "Mi niña";
+    let index = 0;
 
-function playMusic() {
-  const audio = document.getElementById("audio");
-  const btn = document.getElementById("musicBtn");
-  const photo = document.getElementById("photo");
+    function typeText() {
+        if (index < text.length) {
+            nameEl.textContent += text.charAt(index);
+            index++;
+            setTimeout(typeText, 180);
+        }
+    }
 
-  audio.play();
-  btn.innerText = "🎶 Sonando…";
-  btn.disabled = true;
+    btn.addEventListener("click", () => {
+        audio.play();
+        btn.textContent = "Sonando…";
+        btn.disabled = true;
 
-  // Mostrar foto con fade in
-  setTimeout(() => {
-    photo.classList.add("show");
-  }, 500);
-}
+        photo.classList.add("show");
+        typeText();
 
-function createHearts() {
-  setInterval(() => {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = "❤️";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (Math.random() * 20 + 15) + "px";
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 8000);
-  }, 700);
-}
+        setTimeout(() => {
+            message.classList.add("show");
+        }, 3500);
+    });
 </script>
 
 </body>
