@@ -73,14 +73,12 @@ h1 {
   overflow: hidden;
   margin: 30px 0;
   box-shadow: 0 15px 35px rgba(0,0,0,.45);
-  animation: fadePhoto 1.8s ease forwards;
 }
 
 .photo-frame img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
 }
 
 /* Texto */
@@ -119,11 +117,9 @@ p {
   border-radius: 14px;
 }
 
-/* Nombre animado */
 .name {
   font-weight: bold;
   font-style: italic;
-  display: inline-block;
 }
 
 /* Firma */
@@ -160,11 +156,6 @@ p {
   from {opacity:0; transform: translateY(30px);}
   to {opacity:1; transform: translateY(0);}
 }
-
-@keyframes fadePhoto {
-  from {opacity:0; transform: scale(1.03);}
-  to {opacity:1; transform: scale(1);}
-}
 </style>
 </head>
 
@@ -172,7 +163,7 @@ p {
 
 <!-- Intro -->
 <div class="intro">
-  <button onclick="openLetter()">Ábreme ❤️</button>
+  <button id="openBtn">Ábreme ❤️</button>
 </div>
 
 <!-- Carta -->
@@ -182,7 +173,6 @@ p {
     <h1>No quiero perderte</h1>
     <div class="subtitle">Aunque la distancia exista, yo sigo aquí</div>
 
-    <!-- FOTO -->
     <div class="photo-frame">
       <img src="nosotros.jpg" alt="Nosotros">
     </div>
@@ -193,14 +183,13 @@ p {
       No quiero que la distancia gane.
     </p>
 
-    <!-- BOTÓN -->
-    <button id="musicBtn" class="music-btn" onclick="playMusic()">
+    <button id="musicBtn" class="music-btn">
       ❤️ Presiona y escucha mi corazón
     </button>
 
-    <audio id="audio" loop>
+    <!-- AUDIO -->
+    <audio id="audio" preload="auto" loop>
       <source src="corazon.mp3" type="audio/mpeg">
-      Tu navegador no soporta audio.
     </audio>
 
     <div class="promise">
@@ -219,29 +208,33 @@ p {
 </div>
 
 <script>
-function openLetter() {
-  document.querySelector('.intro').style.display = 'none';
-  document.getElementById('content').style.display = 'block';
+const openBtn = document.getElementById("openBtn");
+const musicBtn = document.getElementById("musicBtn");
+const audio = document.getElementById("audio");
+const nameEl = document.getElementById("name");
+
+openBtn.addEventListener("click", () => {
+  document.querySelector(".intro").style.display = "none";
+  document.getElementById("content").style.display = "block";
   createHearts();
-}
+});
 
-function playMusic() {
-  const audio = document.getElementById("audio");
-  const btn = document.getElementById("musicBtn");
-
-  audio.play();
-  btn.innerText = "🎶 Sonando…";
-  btn.disabled = true;
-  typeName();
-}
+musicBtn.addEventListener("click", () => {
+  audio.currentTime = 0;
+  audio.play().then(() => {
+    musicBtn.innerText = "🎶 Sonando…";
+    musicBtn.disabled = true;
+    typeName();
+  }).catch(err => {
+    alert("Toca el botón otra vez ❤️");
+  });
+});
 
 function typeName() {
   const text = "Mi niña";
-  const el = document.getElementById("name");
   let i = 0;
-
   const interval = setInterval(() => {
-    el.textContent += text[i];
+    nameEl.textContent += text[i];
     i++;
     if (i === text.length) clearInterval(interval);
   }, 150);
