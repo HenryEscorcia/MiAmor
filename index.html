@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para Ti, Siempre ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #1f1c2c, #928dab);
+  min-height: 100vh;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* Pantalla inicial */
+.intro {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #000000, #434343);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.intro button {
+  background: #ff4e8d;
+  border: none;
+  padding: 20px 35px;
+  border-radius: 45px;
+  color: white;
+  font-size: 1.3em;
+  cursor: pointer;
+  box-shadow: 0 12px 30px rgba(0,0,0,.5);
+  transition: transform .3s;
+}
+
+.intro button:hover { transform: scale(1.05); }
+
+/* Contenido */
+.container {
+  display: none;
+  padding: 50px 20px;
+}
+
+.card {
+  max-width: 800px;
+  margin: auto;
+  background: rgba(0,0,0,.35);
+  border-radius: 25px;
+  padding: 40px;
+  animation: fadeIn 2s ease;
+  box-shadow: 0 30px 60px rgba(0,0,0,.5);
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.6em;
+}
+
+.subtitle {
+  text-align: center;
+  opacity: .85;
+  margin-bottom: 35px;
+}
+
+p {
+  font-size: 1.15em;
+  line-height: 1.7;
+  margin: 20px 0;
+}
+
+/* Botón música */
+.music-btn {
+  margin: 35px auto 10px;
+  display: block;
+  background: #ff4e8d;
+  border: none;
+  padding: 16px 30px;
+  border-radius: 35px;
+  color: white;
+  font-size: 1.1em;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0,0,0,.4);
+  animation: pulse 2s infinite;
+}
+
+.music-btn:disabled {
+  opacity: .7;
+  cursor: default;
+  animation: none;
+}
+
+@keyframes pulse {
+  0% {transform: scale(1);}
+  50% {transform: scale(1.05);}
+  100% {transform: scale(1);}
+}
+
+/* Promesa */
+.promise {
+  margin-top: 40px;
+  padding: 25px;
+  border-left: 4px solid #ff4e8d;
+  background: rgba(255,78,141,.1);
+  border-radius: 12px;
+}
+
+/* Firma */
+.signature {
+  margin-top: 50px;
+  text-align: right;
+  font-style: italic;
+  opacity: .9;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {opacity:0; transform: translateY(30px);}
+  to {opacity:1; transform: translateY(0);}
+}
+
+/* Corazones */
+.heart {
+  position: fixed;
+  bottom: -20px;
+  color: #ff4e8d;
+  animation: floatUp 8s linear infinite;
+  font-size: 20px;
+  opacity: .6;
+}
+
+@keyframes floatUp {
+  from {transform: translateY(0); opacity:.7;}
+  to {transform: translateY(-120vh); opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Intro -->
+<div class="intro">
+  <button onclick="openLetter()">Ábreme ❤️</button>
+</div>
+
+<!-- Carta -->
+<div class="container" id="content">
+
+  <div class="card">
+    <h1>No quiero perderte</h1>
+    <div class="subtitle">Aunque la distancia exista, yo sigo aquí</div>
+
+    <p>
+      No sé cómo decir esto sin que me tiemble el corazón,
+      pero necesito que lo sepas: <b>no quiero un futuro donde tú no estés</b>.
+    </p>
+
+    <p>
+      La distancia duele, pesa y a veces asusta,
+      pero nunca ha sido más fuerte que lo que siento por ti.
+    </p>
+
+    <p>
+      Te pienso todos los días,
+      incluso cuando no puedo abrazarte,
+      incluso cuando te extraño más de lo que puedo explicar.
+    </p>
+
+    <!-- BOTÓN -->
+    <button id="musicBtn" class="music-btn" onclick="playMusic()">
+      ❤️ Presiona y escucha mi corazón
+    </button>
+
+    <p style="text-align:center; opacity:.75; font-size:.9em;">
+      🔊 Si no escuchas nada, sube el volumen de tu celular
+    </p>
+
+    <!-- YouTube oculto -->
+    <iframe id="musicPlayer"
+      src=""
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+      style="width:1px;height:1px;opacity:0;position:absolute;">
+    </iframe>
+
+    <div class="promise">
+      <p>No te prometo que todo será fácil,</p>
+      <p>pero sí te prometo intentarlo todos los días.</p>
+      <p><b>No me voy a rendir contigo.</b></p>
+    </div>
+
+    <p>
+      Si alguna vez dudas,
+      vuelve aquí
+      y recuerda que alguien,
+      desde donde esté,
+      sigue apostando por ti.
+    </p>
+
+    <div class="signature">
+      Con todo mi corazón,<br>
+      Henri ❤️
+    </div>
+  </div>
+</div>
+
+<script>
+function openLetter() {
+  document.querySelector('.intro').style.display = 'none';
+  document.getElementById('content').style.display = 'block';
+  createHearts();
+}
+
+function playMusic(){
+  const btn = document.getElementById("musicBtn");
+  btn.innerText = "🎶 Sonando…";
+  btn.disabled = true;
+
+  document.getElementById("musicPlayer").src =
+  "https://www.youtube.com/embed/i9UDD6zyCGs?autoplay=1&mute=1&loop=1&playlist=i9UDD6zyCGs&controls=0";
+}
+
+function createHearts() {
+  setInterval(() => {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.innerHTML = '❤️';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 8000);
+  }, 600);
+}
+</script>
+
+</body>
+</html>
