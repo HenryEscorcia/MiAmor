@@ -17,7 +17,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Intro */
 .intro {
   position: fixed;
   inset: 0;
@@ -36,10 +35,8 @@ body {
   color: white;
   font-size: 1.3em;
   cursor: pointer;
-  box-shadow: 0 12px 30px rgba(0,0,0,.5);
 }
 
-/* Contenido */
 .container {
   display: none;
   padding: 50px 20px;
@@ -51,19 +48,23 @@ body {
   background: rgba(0,0,0,.35);
   border-radius: 25px;
   padding: 40px;
-  animation: fadeIn 2s ease;
-  box-shadow: 0 30px 60px rgba(0,0,0,.5);
+  animation: fadeIn 1.5s ease;
 }
 
-h1 {
-  text-align: center;
-  font-size: 2.6em;
-}
+h1 { text-align: center; font-size: 2.6em; }
 
 .subtitle {
   text-align: center;
   opacity: .85;
   margin-bottom: 25px;
+}
+
+.photo {
+  width: 100%;
+  max-height: 360px;
+  object-fit: cover;
+  border-radius: 20px;
+  margin: 25px 0;
 }
 
 p {
@@ -72,19 +73,8 @@ p {
   margin: 20px 0;
 }
 
-/* Foto */
-.photo {
-  width: 100%;
-  max-height: 380px;
-  object-fit: cover;
-  border-radius: 20px;
-  margin: 25px 0;
-  box-shadow: 0 15px 35px rgba(0,0,0,.5);
-}
-
-/* Botón música */
 .music-btn {
-  margin: 35px auto 10px;
+  margin: 25px auto 15px;
   display: block;
   background: #ff4e8d;
   border: none;
@@ -93,55 +83,22 @@ p {
   color: white;
   font-size: 1.1em;
   cursor: pointer;
-  box-shadow: 0 10px 25px rgba(0,0,0,.4);
-  animation: pulse 2s infinite;
 }
 
-.music-btn:disabled {
-  opacity: .7;
-  animation: none;
+audio {
+  width: 100%;
+  margin-top: 10px;
 }
 
-@keyframes pulse {
-  0% {transform: scale(1);}
-  50% {transform: scale(1.05);}
-  100% {transform: scale(1);}
-}
-
-/* Promesa */
-.promise {
-  margin-top: 40px;
-  padding: 25px;
-  border-left: 4px solid #ff4e8d;
-  background: rgba(255,78,141,.1);
-  border-radius: 12px;
-}
-
-/* Firma */
 .signature {
-  margin-top: 50px;
+  margin-top: 40px;
   text-align: right;
   font-style: italic;
   opacity: .9;
 }
 
-/* Corazones */
-.heart {
-  position: fixed;
-  bottom: -20px;
-  color: #ff4e8d;
-  animation: floatUp 8s linear infinite;
-  font-size: 20px;
-  opacity: .6;
-}
-
-@keyframes floatUp {
-  from {transform: translateY(0);}
-  to {transform: translateY(-120vh); opacity:0;}
-}
-
 @keyframes fadeIn {
-  from {opacity:0; transform: translateY(30px);}
+  from {opacity:0; transform: translateY(20px);}
   to {opacity:1; transform: translateY(0);}
 }
 </style>
@@ -149,29 +106,22 @@ p {
 
 <body>
 
-<!-- Intro -->
 <div class="intro">
   <button onclick="openLetter()">Ábreme ❤️</button>
 </div>
 
-<!-- Carta -->
 <div class="container" id="content">
   <div class="card">
 
     <h1>No quiero perderte</h1>
     <div class="subtitle">Aunque la distancia exista, yo sigo aquí</div>
 
-    <!-- FOTO -->
     <img src="nosotros.jpg" alt="Nosotros" class="photo">
 
     <p>
-      No sé cómo decir esto sin que me tiemble el corazón,
-      pero necesito que lo sepas: <b>no quiero un futuro donde tú no estés</b>.
-    </p>
-
-    <p>
-      La distancia duele, pesa y a veces asusta,
-      pero nunca ha sido más fuerte que lo que siento por ti.
+      No quiero un futuro donde tú no estés.
+      No quiero rendirme contigo.
+      No quiero que la distancia gane.
     </p>
 
     <!-- BOTÓN -->
@@ -179,16 +129,17 @@ p {
       ❤️ Presiona y escucha mi corazón
     </button>
 
-    <audio id="audio" loop>
+    <!-- AUDIO (VISIBLE, CLAVE PARA QUE SUENE) -->
+    <audio id="audio" controls preload="auto">
       <source src="corazon.mp3" type="audio/mpeg">
       Tu navegador no soporta audio.
     </audio>
 
-    <div class="promise">
-      <p>No te prometo que todo será fácil,</p>
-      <p>pero sí te prometo intentarlo todos los días.</p>
-      <p><b>No me voy a rendir contigo.</b></p>
-    </div>
+    <p>
+      Si alguna vez dudas,
+      vuelve aquí
+      y recuerda que sigo apostando por ti.
+    </p>
 
     <div class="signature">
       Con todo mi corazón,<br>
@@ -202,7 +153,6 @@ p {
 function openLetter() {
   document.querySelector('.intro').style.display = 'none';
   document.getElementById('content').style.display = 'block';
-  createHearts();
 }
 
 function playMusic() {
@@ -212,18 +162,6 @@ function playMusic() {
   audio.play();
   btn.innerText = "🎶 Sonando…";
   btn.disabled = true;
-}
-
-function createHearts() {
-  setInterval(() => {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = "❤️";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (Math.random() * 20 + 15) + "px";
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 8000);
-  }, 600);
 }
 </script>
 
