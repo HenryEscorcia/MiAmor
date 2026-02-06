@@ -75,11 +75,12 @@ h1 {
   box-shadow: 0 15px 35px rgba(0,0,0,.45);
 }
 
-.photo-frame img {
+.photo-frame video {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: contain; /* NO se corta */
   background: #000;
+  display: block;
 }
 
 /* Texto */
@@ -171,17 +172,20 @@ p {
 <div class="container" id="content">
   <div class="card">
 
-    <h1>No quiero perderte</h1>
-    <div class="subtitle">Aunque la distancia exista, yo sigo aquí</div>
+    <h1>NO QUIERO PERDERTE</h1>
+    <div class="subtitle">Aunque la distancia exista, yo sigo aquí, Tengo en mi mente tu sonrisa, y aunque la distancia nos separe, tu recuerdo viene a mi constantemente.</div>
 
-    <div class="photo-frame">
-      <img src="nosotros.jpg" alt="Nosotros">
-    </div>
+<div class="photo-frame">
+  <video src="video.mp4" autoplay muted loop playsinline></video>
+</div>
 
     <p>
-      No quiero un futuro donde tú no estés.
-      No quiero rendirme contigo.
-      No quiero que la distancia gane.
+      A pesar de la distancia, no quiero que esto termine, porque lo que siento por ti es más fuerte que </br>
+      cualquier kilómetro que nos separe. Te amo demasiado como para rendirme, y estos dos años juntos nos </br> 
+      han demostrado que, incluso en los momentos difíciles, nuestro amor siempre ha sabido resistir. </br>
+      Hemos aprendido, crecido y luchado uno por el otro, y eso me confirma que lo nuestro no es algo pasajero, </br>
+      sino algo real, fuerte y eterno. Yo sigo aquí, eligiéndote, </br>
+      creyendo en nosotros y en todo lo que aún nos queda por vivir.
     </p>
 
     <button id="musicBtn" class="music-btn">
@@ -202,7 +206,7 @@ p {
 
     <div class="signature">
       Con todo mi corazón,<br>
-      Henri ❤️
+      Tu niño ❤️, Te amo
     </div>
 
   </div>
@@ -256,4 +260,5 @@ function createHearts() {
 
 </body>
 </html>
+
 
